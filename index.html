@@ -20,13 +20,13 @@
 	</body>
 	<script>
 
+		const RESOLUTION = 128;
 		const BACKGROUND_COLOR = "#110022";
 		let ctx = null;
-		let canvasWidth, canvasHeight;
 
-		let FillBackground = (color) => {
+		let DrawBackground = (color) => {
 			ctx.fillStyle = color;
-			ctx.fillRect(0, 0, canvasHeight, canvasWidth);
+			ctx.fillRect(0, 0, RESOLUTION, RESOLUTION);
 		};
 
 		let DrawPixel = (x, y, color) => {
@@ -34,21 +34,30 @@
 			ctx.fillRect(Math.round(x), Math.round(y), 1, 1);
 		};
 
+		let RenderStarfield = (starCount) => {
+			for( let i=0; i<starCount; i++ ) {
+				DrawPixel(
+					Math.round(Math.random()*RESOLUTION),
+					Math.round(Math.random()*RESOLUTION),
+					"#ffffff"
+				);
+			}
+		}
+
 		window.onload = () => {
 			const canvas = document.querySelector('canvas');
 			ctx = canvas.getContext('2d');
-			canvasWidth = canvas.width;
-			canvasHeight = canvas.height;
 
-			ctx.scale(4, 4);
+			ctx.scale(canvas.width/RESOLUTION, canvas.height/RESOLUTION);
 
 			ctx.fillStyle = "#eeeeff";
 			ctx.fillRect(0, 0, canvas.height, canvas.width);
 			ctx.fillStyle = "#9999ff";
 			ctx.fillText("Time to Draw Something!", 10, 20, canvas.width-20);
 
-			FillBackground(BACKGROUND_COLOR);
-			DrawPixel(64, 64, "#FFFFEE")
+			DrawBackground(BACKGROUND_COLOR);
+			DrawPixel(64, 64, "#FFFFEE");
+			RenderStarfield(50);
 		}
 	</script>
 </html>
