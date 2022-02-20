@@ -34,6 +34,11 @@
 			ctx.fillRect(Math.round(x), Math.round(y), 1, 1);
 		};
 
+		let DrawColumn = (x, y, h, color) => {
+			ctx.fillStyle = color;
+			ctx.fillRect(Math.round(x), Math.round(y), 1, Math.round(h));
+		};
+
 		let RenderStarfield = (starCount) => {
 			for( let i=0; i<starCount; i++ ) {
 				DrawPixel(
@@ -42,7 +47,33 @@
 					"#ffffff"
 				);
 			}
-		}
+		};
+
+		let RenderMoon = (x, y, r, color) => {
+			for( let i = x-r; i <= x+r; i++ ){
+				const h = Math.floor(Math.sqrt(Math.pow(r,2) - Math.pow((i-x),2))*2);
+				DrawColumn(i, y-Math.floor(h/2), h, color)
+			}
+		};
+
+		let RenderTerrain = (peaks, color) => {
+			for(let idx=1; idx < peaks.length; idx++) {
+				let height = peaks[idx - 1];
+				let peakDistance = (RESOLUTION/(peaks.length-1));
+				let currentPeakPosition = peakDistance * (idx-1);
+				let peakDifference = peaks[idx] - height;
+				let stepHeight = peakDifference / peakDistance;
+				for( let step = 0; step < peakDistance; step++ ){
+					let currenHeight = height + (stepHeight * step);
+					DrawColumn(
+						currentPeakPosition + step,
+						RESOLUTION - currenHeight,
+						currenHeight,
+						color
+					);
+				}
+			}
+		};
 
 		window.onload = () => {
 			const canvas = document.querySelector('canvas');
@@ -56,8 +87,17 @@
 			ctx.fillText("Time to Draw Something!", 10, 20, canvas.width-20);
 
 			DrawBackground(BACKGROUND_COLOR);
-			DrawPixel(64, 64, "#FFFFEE");
+			DrawPixel(64, 64, "#FF0000");
 			RenderStarfield(50);
+
+			RenderMoon(32, 32, 38, "#FFFFEE");
+
+			//DrawColumn(1, 1, 32, "#00FF00");
+
+			// RenderTerrain([64,32]);
+			RenderTerrain([25, 64, 22, 50, 30, 50], "#339900");
+
+			RenderTerrain([7, 10, 10, 7], "#00CC00");
 		}
 	</script>
 </html>
