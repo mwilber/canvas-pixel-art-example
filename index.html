@@ -22,6 +22,11 @@
 
 		const RESOLUTION = 128;
 		const BACKGROUND_COLOR = "#110022";
+		const BITMAP_PALETTE = [
+			"transparent",
+			"#000000",
+			"#FFFFFF"
+		];
 		let ctx = null;
 
 		let DrawBackground = (color) => {
@@ -75,6 +80,14 @@
 			}
 		};
 
+		let RenderBitmap = (x, y, bitmap) => {
+			bitmap.forEach((row, idx) => {
+				row.forEach((pixel, col) => {
+					DrawPixel(x + col, y + idx, BITMAP_PALETTE[pixel]);
+				});
+			});
+		};
+
 		window.onload = () => {
 			const canvas = document.querySelector('canvas');
 			ctx = canvas.getContext('2d');
@@ -98,6 +111,18 @@
 			RenderTerrain([25, 64, 22, 50, 30, 50], "#339900");
 
 			RenderTerrain([7, 10, 10, 7], "#00CC00");
+
+			RenderBitmap(
+				64,
+				96,
+				[
+					[0,1,1,1,0],
+					[1,2,2,2,1],
+					[1,2,2,2,1],
+					[1,2,1,2,1],
+					[0,1,1,1,0]
+				]
+			);
 		}
 	</script>
 </html>
