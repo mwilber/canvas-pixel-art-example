@@ -1,36 +1,14 @@
 <html>
 	<head>
 		<title>JavaScript Pixel Art - HTML Canvas Without a Framework</title>
-		<link rel="stylesheet" href="index.css"/>
+		<link rel="stylesheet" href="index.css" />
+		<script type="text/javascript" src="ArtGenerator.js"></script>
 	</head>
 	<body>
 		<h1>JavaScript Pixel Art - HTML Canvas Without a Framework</h1>
 		<canvas width="512" height="512"></canvas>
 	</body>
 	<script>
-
-		class ArtGenerator {
-			constructor(canvas, resolution) {
-				// Store the params in case we need them later
-				this.canvas = canvas;
-				this.resolution = resolution;
-				// Store the canvas drawing context. All drawing calls will come from this object.
-				this.ctx = canvas.getContext('2d');
-				// Scale the context based on the resolution to fill the entire canvas
-				this.ctx.scale(canvas.width/this.resolution, canvas.height/this.resolution);
-
-				// Draw a sample message to the canvas...
-				// Set the background color
-				this.ctx.fillStyle = "#eeeeff";
-				// Draw a filled rectangle the same size as the canvas
-				this.ctx.fillRect(0, 0, canvas.height, canvas.width);
-				// Set the text color
-				this.ctx.fillStyle = "#9999ff";
-				// Draw filled text
-				this.ctx.fillText("Time to Draw Something!", 10, 20, canvas.width-20);
-			}
-		}
-
 		window.onload = () => {
 			const canvas = document.querySelector('canvas');
 			let artGenerator = new ArtGenerator(canvas, 128);
