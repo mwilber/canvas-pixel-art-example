@@ -1,2 +1,2 @@
 # canvas-pixel-art-example
-Canvas art without a framework
+Canvas art without a framework.
