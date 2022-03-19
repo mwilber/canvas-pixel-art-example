@@ -16,4 +16,14 @@ class ArtGenerator {
 		this.ctx.fillStyle = color;
 		this.ctx.fillRect(Math.round(x), Math.round(y), 1, 1);
 	}
+
+	RenderStarfield (starCount) {
+		for( let i=0; i<starCount; i++ ) {
+			this.DrawPixel(
+				Math.round(Math.random()*512),
+				Math.round(Math.random()*512),
+				"#ffffff"
+			);
+		}
+	};
 }
