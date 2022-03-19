@@ -15,4 +15,9 @@ class ArtGenerator {
 		// Draw filled text
 		this.ctx.fillText("Time to Draw Something!", 10, 20, canvas.width-20);
 	}
+
+	DrawPixel (x, y, color) {
+		ctx.fillStyle = color;
+		ctx.fillRect(Math.round(x), Math.round(y), 1, 1);
+	}
 }
