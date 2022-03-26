@@ -1,7 +1,8 @@
 class ArtGenerator {
-	constructor(canvas) {
+	constructor(canvas, resolution) {
 		// Store the params in case we need them later
 		this.canvas = canvas;
+		this.resolution = resolution;
 		// Store the canvas drawing context. All drawing calls will come from this object.
 		this.ctx = canvas.getContext('2d');
 
@@ -9,6 +10,12 @@ class ArtGenerator {
 		this.ctx.fillStyle = "#000000";
 		// Draw a filled rectangle the same size as the canvas
 		this.ctx.fillRect(0, 0, canvas.height, canvas.width);
+
+		// Set the canvas scale relative to the specified resolution
+		this.ctx.scale(
+			canvas.width / resolution, 
+			canvas.height / resolution
+		);
 	}
 
 	DrawPixel (x, y, color) {
@@ -19,8 +26,8 @@ class ArtGenerator {
 	RenderStarfield (starCount) {
 		for( let i=0; i<starCount; i++ ) {
 			this.DrawPixel(
-				Math.round(Math.random()*512),
-				Math.round(Math.random()*512),
+				Math.round(Math.random() * this.resolution),
+				Math.round(Math.random() * this.resolution),
 				"#ffffff"
 			);
 		}
