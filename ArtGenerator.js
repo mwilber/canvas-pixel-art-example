@@ -37,4 +37,11 @@ class ArtGenerator {
 			);
 		}
 	}
+
+	RenderMoon (x, y, r, color) {
+		for( let i = x-r; i <= x+r; i++ ){
+			const h = Math.floor(Math.sqrt(Math.pow(r,2) - Math.pow((i-x),2))*2);
+			this.DrawColumn(i, y-Math.floor(h/2), h, color)
+		}
+	};
 }
