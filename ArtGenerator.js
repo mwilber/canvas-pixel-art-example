@@ -23,6 +23,11 @@ class ArtGenerator {
 		this.ctx.fillRect(Math.round(x), Math.round(y), 1, 1);
 	}
 
+	DrawColumn (x, y, h, color) {
+		this.ctx.fillStyle = color;
+		this.ctx.fillRect(Math.round(x), Math.round(y), 1, Math.round(h));
+	};
+
 	RenderStarfield (starCount) {
 		for( let i=0; i<starCount; i++ ) {
 			this.DrawPixel(

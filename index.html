@@ -13,9 +13,9 @@
 			const canvas = document.querySelector('canvas');
 			let artGenerator = new ArtGenerator(canvas, 128);
 
-			artGenerator.DrawPixel(256, 256, "#ffffff");
-
 			artGenerator.RenderStarfield(100);
+
+			artGenerator.DrawColumn(1, 1, 32, "#FF0000");
 		}
 	</script>
 </html>
