@@ -17,9 +17,23 @@
 
 			artGenerator.RenderMoon(32, 32, 38, "#FFFFEE");
 
-			artGenerator.RenderTerrain([64,32], "#FF0000");
-			// artGenerator.RenderTerrain([25, 64, 22, 50, 30, 50], "#339900");
-			// artGenerator.RenderTerrain([7, 10, 10, 7], "#00CC00");
+			artGenerator.RenderTerrain([25, 64, 22, 50, 30, 50], "#339900");
+			artGenerator.RenderTerrain([7, 10, 10, 7], "#00CC00");
+
+			const eyeBitmap = [
+					[0,0,0,1,1,0,0,0],
+					[0,0,1,2,2,1,0,0],
+					[0,1,2,2,2,2,1,0],
+					[1,2,2,2,2,2,2,1],
+					[1,2,2,2,2,2,2,1],
+					[1,2,2,2,1,1,2,1],
+					[1,2,2,1,1,1,1,1],
+					[0,1,2,1,1,1,1,0],
+					[0,0,1,2,1,1,0,0],
+					[0,0,0,1,1,0,0,0]
+				];
+			artGenerator.RenderBitmap(64, 96, eyeBitmap);
+			//artGenerator.RenderBitmap(72, 96, eyeBitmap);
 		}
 	</script>
 </html>

@@ -3,6 +3,11 @@ class ArtGenerator {
 		// Store the params in case we need them later
 		this.canvas = canvas;
 		this.resolution = resolution;
+		this.bitmapPalette = [
+			"transparent",
+			"#000000",
+			"#FFFFFF"
+		];
 		// Store the canvas drawing context. All drawing calls will come from this object.
 		this.ctx = canvas.getContext('2d');
 
@@ -62,5 +67,13 @@ class ArtGenerator {
 				);
 			}
 		}
+	};
+
+	RenderBitmap (x, y, bitmap, color) {
+		bitmap.forEach((row, idx) => {
+			row.forEach((pixel, col) => {
+				this.DrawPixel(x + col, y + idx, this.bitmapPalette[pixel] ? this.bitmapPalette[pixel] : color);
+			});
+		});
 	};
 }
