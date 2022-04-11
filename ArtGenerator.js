@@ -44,4 +44,23 @@ class ArtGenerator {
 			this.DrawColumn(i, y-Math.floor(h/2), h, color)
 		}
 	};
+
+	RenderTerrain (peaks, color) {
+		for(let idx=1; idx < peaks.length; idx++) {
+			let height = peaks[idx - 1];
+			let peakDistance = (this.resolution / (peaks.length-1));
+			let currentPeakPosition = peakDistance * (idx - 1);
+			let peakDifference = peaks[idx] - height;
+			let stepHeight = peakDifference / peakDistance;
+			for( let step = 0; step < peakDistance; step++ ){
+				let currenHeight = height + (stepHeight * step);
+				this.DrawColumn(
+					currentPeakPosition + step,
+					this.resolution - currenHeight,
+					currenHeight,
+					color
+				);
+			}
+		}
+	};
 }
