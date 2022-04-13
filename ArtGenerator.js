@@ -12,7 +12,7 @@ class ArtGenerator {
 		this.ctx = canvas.getContext('2d');
 
 		// Set the background color
-		this.ctx.fillStyle = "#000000";
+		this.ctx.fillStyle = "#ff7f51";
 		// Draw a filled rectangle the same size as the canvas
 		this.ctx.fillRect(0, 0, canvas.height, canvas.width);
 
